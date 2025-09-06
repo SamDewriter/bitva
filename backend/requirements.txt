@@ -1,0 +1,8 @@
+fastapi[standard]
+sqlalchemy
+python-dotenv
+psycopg2-binary
+PyJWT
+passlib[bcrypt]
+python-multipart
+alembic

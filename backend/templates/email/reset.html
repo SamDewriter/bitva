@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Reset your Bitva password</title>
+    <style>
+      @media screen and (max-width: 640px) {
+        .container { width:100% !important; }
+        .px-24 { padding-left:16px !important; padding-right:16px !important; }
+        .logo img { height:28px !important; }
+      }
+    </style>
+  </head>
+  <body style="margin:0; padding:0; background-color:#f5f7fb;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f5f7fb;">
+      <tr>
+        <td align="center" style="padding:24px;">
+          <table role="presentation" class="container" width="600" cellspacing="0" cellpadding="0" border="0" style="width:600px; background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 1px 2px rgba(16,24,40,.04), 0 1px 1px rgba(16,24,40,.04);">
+            <!-- Header -->
+            <tr>
+              <td class="logo" align="center" style="padding:24px;">
+                  <h1 style="color:#205FEA;">Bitva</h1>
+              </td>
+            </tr>
+            <tr><td style="border-top:1px solid #eceff5;"></td></tr>
+
+            <!-- Body -->
+            <tr>
+              <td class="px-24" style="padding:24px 24px 8px 24px; font-family:Inter,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#101828;">
+                <h1 style="margin:0 0 8px 0; font-size:20px; line-height:28px;">Reset your password</h1>
+                <p style="margin:0 0 16px 0; font-size:16px; line-height:24px;">
+                  We received a request to reset the password for your Bitva account. If you made this request, please use the button below to set a new password.
+                </p>
+    
+              </td>
+            </tr>
+
+            <!-- CTA with VML fallback -->
+            <tr>
+              <td align="center" class="px-24" style="padding:8px 24px 8px;">
+                <!--[if mso]>
+                <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
+                  href="{{RESET_URL}}" style="height:44px; v-text-anchor:middle; width:220px;" arcsize="12%"
+                  fillcolor="#205FEA" strokecolor="#205FEA">
+                  <w:anchorlock/>
+                  <center style="color:#ffffff; font-family:Arial, sans-serif; font-size:16px; font-weight:bold;">
+                    Reset Password
+                  </center>
+                </v:roundrect>
+                <![endif]-->
+                <!--[if !mso]><!-- -->
+                <a href="{{ RESET_URL }}"
+                   style="background:#205FEA; color:#ffffff; display:inline-block; padding:12px 24px; border-radius:8px; text-decoration:none; font-family:Inter,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; font-size:16px; font-weight:700;">
+                  Reset Password
+                </a>
+                <!--<![endif]-->
+              </td>
+            </tr>
+
+            <!-- Expiry + Secondary info -->
+            <tr>
+              <td class="px-24" style="padding:8px 24px 24px; font-family:Inter,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#667085; font-size:14px; line-height:22px;">
+                <p style="margin:0 0 12px 0;">
+                  This link will expire in <strong>30 minutes</strong> or after it’s used once. If you didn’t request a password reset, you can safely ignore this email—your password will remain unchanged.
+                </p>
+              </td>
+            </tr>
+
+            <tr><td style="border-top:1px solid #eceff5;"></td></tr>
+
+            <!-- Footer -->
+            <tr>
+              <td class="px-24" style="padding:16px 24px 24px; font-family:Inter,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:#98a2b3; font-size:12px; line-height:18px; text-align:center;">
+                © 2025 Bitva Inc., All rights reserved.<br>
+                Need help? <a href="mailto:support@bitva.com" style="color:#205FEA; text-decoration:none;">support@bitva.com</a> ·
+                <a href="https://www.bitva.com" style="color:#205FEA; text-decoration:none;">www.bitva.com</a>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
