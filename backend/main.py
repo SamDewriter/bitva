@@ -111,8 +111,8 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         raise HTTPException(status_code=400, detail="Invalid credentials")
     if not user.is_verified:
         raise HTTPException(status_code=400, detail="Email not verified")
-    # if user.is_admin:
-    #     raise HTTPException(status_code=403, detail="Not authorized as regular user")
+    if user.is_admin:
+        raise HTTPException(status_code=403, detail="Not authorized as regular user")
     access_token = create_access_token(data={"sub": user.email})
     return {
         "name": user.name,
