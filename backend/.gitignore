@@ -1,6 +1,5 @@
 .env
 /env
-backend/__pycache__/
-backend/__pycache__
-backend/*.py[cod]
-backend/*$py.class
+/__pycache__/
+*.py[cod]
+*$py.class
