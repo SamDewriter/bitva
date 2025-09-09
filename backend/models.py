@@ -1,3 +1,4 @@
+from datetime import datetime
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from database import Base
 
@@ -20,3 +21,6 @@ class User(Base):
     # Password Reset
     password_reset_token = Column(String, unique=True, index=True, nullable=True)
     password_reset_token_expiry = Column(DateTime, nullable=True)
+
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

@@ -38,12 +38,14 @@ def get_user_by_status(db: Session, status: str):
         users = db.query(models.User).filter(models.User.is_verified == False).all()
     elif status == "all":
         users = db.query(models.User).all()
+    elif status == "active":
+        users = db.query(models.User).filter(models.User.is_active == True).all()
+    elif status == "inactive":
+        users = db.query(models.User).filter(models.User.is_active == False).all()
     else:
         raise HTTPException(status_code=400, detail="Invalid status parameter")
     return users
 
-def get_user_by_access_token(db: Session, token: str):
-    return db.query(models.User).filter(models.User.access_token == token).first()
 
 def get_user_by_password_reset_token(db: Session, token: str):
     return db.query(models.User).filter(models.User.password_reset_token == token).first()
@@ -75,5 +77,3 @@ def decode_access_token(token: str):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token has expired")
     except jwt.PyJWTError:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
-
-    

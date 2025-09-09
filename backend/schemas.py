@@ -31,3 +31,15 @@ class UserRead(BaseModel):
 
     class Config:
         orm_mode = True
+
+class BroadcastIn(BaseModel):
+    subject: str
+    message_content: str
+
+class TestBroadcastIn(BaseModel):
+    email: EmailStr
+    subject: str
+    message_content: str
+
+class UpdateProfileIn(BaseModel):
+    name: str
