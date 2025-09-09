@@ -13,7 +13,7 @@ const isTokenExpired = (t?: string | null) => {
 
 export default function RequireAuth({ children }: { children: JSX.Element }) {
   const location = useLocation();
-  const token = localStorage.getItem("access_token");
+  const token = localStorage.getItem("bitva:access_token");
   if (!token || isTokenExpired(token)) {
     return <Navigate to="/login" replace state={{ from: location }} />;
   }  

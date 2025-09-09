@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api, { setBearer } from "../../api";
 import cryptoImg from "../../images/crypto-network-1.png";
-import bitvaLogo from "../../images/bitva.jpeg"; // adjust path based on where NavBar is
+import bitvaLogo from "../../images/bitva.jpeg";
 import { identifySmartsuppUser } from "../../lib/smartsupp";
 
 const siteKey = import.meta.env.VITE_SMARTSUPP_KEY || "";
@@ -10,6 +10,8 @@ const siteKey = import.meta.env.VITE_SMARTSUPP_KEY || "";
 type LoginResponse = {
   access_token?: string;
   token_type?: string;
+  name?: string;
+  email?: string;
 };
 
 export default function SignInPage() {
@@ -20,6 +22,9 @@ export default function SignInPage() {
   const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();
   const redirectTo = "/dashboard";
+
+  // Disable button unless both fields are filled and not loading
+  const canSubmit = username.trim() !== "" && password !== "" && !loading;
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,22 +49,20 @@ export default function SignInPage() {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
-        validateStatus: () => true 
-        },
+          validateStatus: () => true,
+        }
       );
 
       if (res.status >= 200 && res.status < 300) {
         const name = res.data?.name || "User";
-        const email = (res.data as any)?.email || "";
+        const email = res.data?.email || "";
         if (email) localStorage.setItem("bitva:email", email);
         if (name) localStorage.setItem("bitva:name", name);
         const token = res.data?.access_token;
         if (token) {
-          localStorage.setItem("access_token", token);
-          
+          localStorage.setItem("bitva:access_token", token);
           setBearer(token);
         }
-
         setMsg("Login successful!");
         setUsername("");
         setPassword("");
@@ -96,7 +99,7 @@ export default function SignInPage() {
         <div className="p-8 md:p-12 flex flex-col justify-center">
           <div className="mb-6 text-center">
             <div className="flex justify-center items-center gap-2 mb-2">
-            {<img src={bitvaLogo} alt="Bitva Logo" className="w-7 h-7" />}
+              <img src={bitvaLogo} alt="Bitva Logo" className="w-7 h-7" />
               <span className="text-2xl font-bold text-[#205FEA]">Bitva</span>
             </div>
             <h2 className="text-xl font-bold text-gray-900">Login to Bitva</h2>
@@ -140,9 +143,9 @@ export default function SignInPage() {
 
             <button
               type="submit"
-              disabled={loading}
+              disabled={!canSubmit}
               className={`w-full rounded-md py-2 text-white font-medium transition ${
-                loading ? "bg-[#205FEA]/60 cursor-not-allowed" : "bg-[#205FEA] hover:bg-[#1b4ed1]"
+                canSubmit ? "bg-[#205FEA] hover:bg-[#1b4ed1]" : "bg-[#205FEA]/60 cursor-not-allowed"
               }`}
             >
               {loading ? "Logging in..." : "Login Securely"}

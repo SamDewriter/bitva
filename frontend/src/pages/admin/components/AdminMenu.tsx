@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import api from "../../../api";
 
-const access_token = localStorage.getItem("bitva:access_token");
+const access_token = localStorage.getItem("access_token");
 
 
 
-export function UserMenu({ name, avatar }: { name: string; avatar?: string }) {
+export function AdminMenu({ name, avatar }: { name: string; avatar?: string }) {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ export function UserMenu({ name, avatar }: { name: string; avatar?: string }) {
       localStorage.removeItem("bitva:email");
       localStorage.removeItem("bitva:avatar");
       localStorage.removeItem("access_token");
-      window.location.href = "/login";
+      window.location.href = "/admin/login";
   }
 
   };
@@ -72,7 +72,7 @@ export function UserMenu({ name, avatar }: { name: string; avatar?: string }) {
 
       {open && (
         <div role="menu" className="absolute right-0 mt-2 w-44 rounded-lg border border-gray-200 bg-white shadow-lg overflow-hidden z-50">
-          <a href="/profile" className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem">Profile</a>
+          <a href="/admin/profile" className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem">Profile</a>
           {/* <a href="/settings" className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem">Settings</a> */}
           <button
             onClick={(e) => {

@@ -9,6 +9,9 @@ import Dashboard from "./pages/dashboard/dashboard";
 import ForgotPassword from "./pages/auth/password-reset/forgot-password";
 import ResetPassword from "./pages/auth/password-reset/reset-password";
 import AdminLogin from "./pages/admin/admin-signin";
+import AdminDashboard from "./pages/admin/admin-dashboard";
+import Broadcast from "./pages/admin/broadcast";
+import AdminProfile from "./pages/admin/admin-profile";
 import Profile from "./pages/dashboard/profile";
 import RequireAuth from "./router/RequireAuth";
 
@@ -25,6 +28,9 @@ export default function App() {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/" element={<LandingPage />} />
       <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/admin/dashboard" element={<RequireAuth><AdminDashboard /></RequireAuth>} />
+      <Route path="/admin/broadcast" element={<RequireAuth><Broadcast /></RequireAuth>} />
+      <Route path="/admin/profile" element={<RequireAuth><AdminProfile /></RequireAuth>} />
       <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
       <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
 

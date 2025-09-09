@@ -54,6 +54,9 @@ export default function AdminLogin() {
       if (res.status >= 200 && res.status < 300) {
         const name = res.data?.name || "User";
         localStorage.setItem("bitva:name", name);
+        localStorage.setItem("bitva:email", email);
+        if (remember) localStorage.setItem("bitva:remember", "1");
+        else localStorage.removeItem("bitva:remember");
         const token = res.data?.access_token;
         if (token) {
           localStorage.setItem("access_token", token);

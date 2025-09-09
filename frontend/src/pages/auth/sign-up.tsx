@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import api from "../../api";
-// If the image is inside src/images:
 import cryptoImg from "../../images/crypto-network-2.png";
-import bitvaLogo from "../../images/bitva.jpeg"; // adjust path based on where NavBar is
-// If you keep images in /public/images instead, delete the import above and use src="/images/crypto-network-2.png"
+import bitvaLogo from "../../images/bitva.jpeg";
 
 export default function RegisterForm() {
   const [name, setName] = React.useState("");
@@ -15,17 +13,22 @@ export default function RegisterForm() {
   const [error, setError] = React.useState<string>("");
   const [loading, setLoading] = React.useState(false);
 
+  // Disable button unless all fields are filled, passwords match, and not loading
+  const canSubmit =
+    name.trim() !== "" &&
+    email.trim() !== "" &&
+    password.length >= 8 &&
+    confirmPassword.length >= 8 &&
+    password === confirmPassword &&
+    !loading;
+
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setMsg("");
     setError("");
 
-    if (!name.trim() || !email.trim() || !password || !confirmPassword) {
-      setError("Please fill in all fields.");
-      return;
-    }
-    if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+    if (!canSubmit) {
+      setError("Please fill in all fields and ensure passwords match.");
       return;
     }
 
@@ -35,9 +38,8 @@ export default function RegisterForm() {
         name,
         email,
         password,
-      }); // if your backend is prefixed, api’s baseURL should be "/api"
+      });
       setMsg("Registration successful! Check your email for verification.");
-      // optionally clear the form
       setName("");
       setEmail("");
       setPassword("");
@@ -60,8 +62,7 @@ export default function RegisterForm() {
         {/* Left image */}
         <div className="hidden md:block">
           <img
-            src={cryptoImg} 
-            // If using /public/images, replace with: src="/images/crypto-network-2.png"
+            src={cryptoImg}
             alt="Crypto network"
             className="h-full w-full object-cover"
           />
@@ -71,7 +72,7 @@ export default function RegisterForm() {
         <div className="p-8 md:p-12 flex flex-col justify-center">
           <div className="mb-6 text-center">
             <div className="flex justify-center items-center gap-2 mb-2">
-              {<img src={bitvaLogo} alt="Bitva Logo" className="w-7 h-7" />}
+              <img src={bitvaLogo} alt="Bitva Logo" className="w-7 h-7" />
               <span className="text-2xl font-bold text-[#205FEA]">Bitva</span>
             </div>
             <h2 className="text-xl font-bold text-gray-900">
@@ -157,17 +158,18 @@ export default function RegisterForm() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
+                minLength={8}
                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-[#205FEA] focus:border-[#205FEA] text-sm"
               />
             </div>
 
             <button
               type="submit"
-              disabled={loading}
+              disabled={!canSubmit}
               className={`w-full rounded-md py-2 text-white font-medium transition ${
-                loading
-                  ? "bg-[#205FEA]/60 cursor-not-allowed"
-                  : "bg-[#205FEA] hover:bg-[#1b4ed1]"
+                canSubmit
+                  ? "bg-[#205FEA] hover:bg-[#1b4ed1]"
+                  : "bg-[#205FEA]/60 cursor-not-allowed"
               }`}
             >
               {loading ? "Registering..." : "Register Account"}

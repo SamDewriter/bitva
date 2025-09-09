@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { UserMenu } from "./components/UserMenu";
-import Sidebar from "./components/NavAccessories";
+import { AdminMenu } from "./components/AdminMenu";
+import AdminSidebar from "./components/AdminSidebar";
 import api from "../../api";
 
 // TEMP auth hook — replace with your real auth
 function useAuthUser() {
   const name = localStorage.getItem("bitva:name") || "Alex";
-  const email = localStorage.getItem("bitva:email") || "alex@example.com";
   const avatar = localStorage.getItem("bitva:avatar") || "";
+  const email = localStorage.getItem("bitva:email") || "";
   const access_token = localStorage.getItem("bitva:access_token");
-  return { name, email, avatar, access_token };
+
+  return { name, avatar, email, access_token };
 }
 
 export default function ProfilePage() {
@@ -45,6 +46,8 @@ export default function ProfilePage() {
       if (res.status >= 200 && res.status < 300) {
         localStorage.setItem("bitva:name", formName);
         setMessage("Profile updated successfully!");
+        localStorage.setItem("bitva:name", formName);
+        setMessage("Profile updated successfully!");
         if (formName !== name) {
           setTimeout(() => {
             window.location.reload();
@@ -62,7 +65,7 @@ export default function ProfilePage() {
 
   return (
     <div className="flex min-h-screen bg-gray-50">
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <AdminSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <main className="flex-1">
         {/* Top bar */}
         <header className="flex items-center justify-between bg-white border-b px-4 md:px-6 py-3 md:py-4">
@@ -78,7 +81,7 @@ export default function ProfilePage() {
             </button>
             <h1 className="text-lg font-semibold">Profile</h1>
           </div>
-          <UserMenu name={name} avatar={avatar} />
+          <AdminMenu name={name} avatar={avatar} />
         </header>
 
         {/* Content */}
