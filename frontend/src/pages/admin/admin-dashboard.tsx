@@ -18,7 +18,7 @@ type User = {
 
 // Fetch users with status as a PATH param: /admin/users/{status}
 const fetchUsers = async (status: "all" | "active" | "inactive" | "verified" | "unverified"): Promise<User[]> => {
-  const token = localStorage.getItem("access_token");
+  const token = localStorage.getItem("bitva:access_token");
 
   const res = await api.get(`/admin/users/${encodeURIComponent(status)}`, {
     headers: { Authorization: `Bearer ${token}` },

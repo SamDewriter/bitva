@@ -25,7 +25,7 @@ export function UserMenu({ name, avatar }: { name: string; avatar?: string }) {
       localStorage.removeItem("bitva:name");
       localStorage.removeItem("bitva:email");
       localStorage.removeItem("bitva:avatar");
-      localStorage.removeItem("access_token");
+      localStorage.removeItem("bitva:access_token");
       window.location.href = "/login";
   }
 

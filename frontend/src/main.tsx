@@ -6,7 +6,7 @@ import "./index.css";
 import { setBearer } from "./api";
 
 // hydrate token on app start
-setBearer(localStorage.getItem("access_token"));
+setBearer(localStorage.getItem("bitva:access_token"));
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

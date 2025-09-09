@@ -59,7 +59,7 @@ export default function AdminLogin() {
         else localStorage.removeItem("bitva:remember");
         const token = res.data?.access_token;
         if (token) {
-          localStorage.setItem("access_token", token);
+          localStorage.setItem("bitva:access_token", token);
           setBearer(token);
         }
         setError("");

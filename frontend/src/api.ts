@@ -13,7 +13,7 @@ export const setBearer = (token?: string) => {
 
 // Always pull the latest token from storage before each request
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("access_token");
+  const token = localStorage.getItem("bitva:access_token");
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });

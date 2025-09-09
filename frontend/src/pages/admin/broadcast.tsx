@@ -7,7 +7,7 @@ import api from "../../api";
 function useAuthUser() {
   const name = localStorage.getItem("bitva:name") || "Alex";
   const avatar = localStorage.getItem("bitva:avatar") || "";
-  const access_token = localStorage.getItem("access_token");
+  const access_token = localStorage.getItem("bitva:access_token");
   return { name, avatar, access_token };
 }
 

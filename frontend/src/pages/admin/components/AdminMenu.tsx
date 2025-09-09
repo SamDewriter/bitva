@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import api from "../../../api";
 
-const access_token = localStorage.getItem("access_token");
+const access_token = localStorage.getItem("bitva:access_token");
 
 
 
@@ -25,7 +25,7 @@ export function AdminMenu({ name, avatar }: { name: string; avatar?: string }) {
       localStorage.removeItem("bitva:name");
       localStorage.removeItem("bitva:email");
       localStorage.removeItem("bitva:avatar");
-      localStorage.removeItem("access_token");
+      localStorage.removeItem("bitva:access_token");
       window.location.href = "/admin/login";
   }
 

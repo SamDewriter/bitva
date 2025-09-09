@@ -33,6 +33,7 @@ export default function ProfilePage() {
     try {
       const data = { name: formName };
       const access_token = localStorage.getItem("bitva:access_token");
+      console.log("Access Token:", access_token); // Debug log
       const res = await api.post(
         "/update_profile",
         data,
