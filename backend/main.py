@@ -324,6 +324,7 @@ async def send_broadcast(broadcast: BroadcastIn, token: str = Depends(oauth2_sch
 
     return {"msg": f"Broadcast sent to {len(users_info)} users"}
 
+
 @admin_api.post("/send_test_broadcast/")
 async def send_test_broadcast(broadcast: TestBroadcastIn, token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
     payload = decode_access_token(token)
